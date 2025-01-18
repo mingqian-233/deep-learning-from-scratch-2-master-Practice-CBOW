@@ -48,17 +48,33 @@ class EmbeddingDot:
         h, targetW = self.cache
         dout = dout.reshape(dout.shape[0], 1)
         # 变成一个第一维为batch_size，第二维为1的矩阵，才能和h相乘
+
         dtargetW = dout * h
-        # 这里广播了，dout是有batch_size行1列的矩阵，h是一个有batch_sizes行的矩阵，广播后dout的每一行的那个数字都和h的每一个元素相乘
-        self.embed.backward(dtargetW)  # 这个是Dot层的反向传播
+        # 这里广播了，dout是有batch_size行1列的矩阵，h是一个有batch_sizes行的矩阵，广播后dout的每一行的那个数字都和h的每一个元素相乘。因为正向传播点乘之后相加本身是等价于经过一个加法节点，所以广播就相当于完成了反向传播
+
+        self.embed.backward(dtargetW)  # 这个是Embed层的反向传播
 
         dh = dout * targetW
         return dh
 
 
 class UnigramSampler:
-    def __init__():
-        pass
+
+    def get_p(self, corpus, power):
+        # 返回值是处理好的概率分布和词汇表大小
+        p = None
+        for id in corpus:
+            if id not in p:
+                p[id] = 0
+            p[id] += 1
+        p = np.array(list(p.values()))
+        p = np.power(p, power)
+        p /= np.sum(p)
+        return p, len(p)
+
+    def __init__(self, corpus, power, sample_size):
+        self.sample_size = sample_size
+        self.word_p, self.vocab_size = self.get_p(corpus, power)
 
 
 class NegativeSamplingLoss:
