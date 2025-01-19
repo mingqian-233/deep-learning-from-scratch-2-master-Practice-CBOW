@@ -1,5 +1,6 @@
 # 深度学习进阶-自然语言处理练习（部分）
 
+
 ## 描述
 个人在阅读书籍的时候的自行学习。项目下的common和dataset文件夹、CBOW中的评价代码eval.py来源于原书的github项目 [deep-learning-from-scratch-2](https://github.com/oreilly-japan/deep-learning-from-scratch-2/tree/master)，其余代码大多数都为本人学习书本内容后自行编写。
 
@@ -9,6 +10,12 @@
 
 因为版本兼容等问题，所以会爆出一些奇奇怪怪的错误，对原代码也有部分修改。
 
+
+## 环境
+
+Python: 3.11.4
+cuda: Build cuda_12.2.r12.2/compiler.32965470_0
+cupy: 13.3.0
 
 ---
 
@@ -98,6 +105,6 @@ AttributeError: module 'numpy' has no attribute 'asnumpy'
 
 ---
 
-### 2. 新增添的功能
+### 2. 新增加的功能
 
-在CBOW中添加了可视化窗口输入超参数的功能（在hyper_parameter.py中实现），并且会在把超参数保存在config.yaml下。
+在CBOW中添加了可视化窗口输入超参数的功能（在hyper_parameter.py中实现），并且会在运行后把超参数保存在config.yaml下。
