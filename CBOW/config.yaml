@@ -1,0 +1,4 @@
+batch_size: 1000
+hidden_size: 100
+max_epoch: 10
+window_size: 5

@@ -171,7 +171,7 @@ def to_cpu(x):
     import numpy
     if type(x) == numpy.ndarray:
         return x
-    return np.asnumpy(x)
+    return x.get()
 
 
 def to_gpu(x):
@@ -282,6 +282,11 @@ def analogy(a, b, c, word_to_id, id_to_word, word_matrix, top=5, answer=None):
     for i in (-1 * similarity).argsort():
         if np.isnan(similarity[i]):
             continue
+        i=int(i)
+        # print(i)
+        # print(type(i))
+        # print(id_to_word[i], similarity[i])
+        
         if id_to_word[i] in (a, b, c):
             continue
         print(' {0}: {1}'.format(id_to_word[i], similarity[i]))
