@@ -33,7 +33,9 @@ cupy: 13.3.0
 | window_size  | 5     |
 
 得到结果：
+
 ![示例图片](CBOW/result.png)
+
 感觉这个结果很烂，但不知道为什么出现这个结果。
 微调参数没有用，发现原来是代码写错了。
 
@@ -49,6 +51,7 @@ cupy: 13.3.0
 | window_size  | 5     |
 
 得到结果：
+
 ![示例图片](CBOW/result2.png)
 
 eval.py运行结果如下：
@@ -76,9 +79,7 @@ eval.py运行结果如下：
 ---
 
 ### 1. 对部分原代码的修改
-(1)
-
-**<font color="red">由于高版本的cupy已经不支持cupy.scatter_add</font>**（该功能自 CuPy v4 起已被弃用），需要从cupyx中调用，因此:
+(1)**<font color="red">由于高版本的cupy已经不支持cupy.scatter_add</font>**（该功能自 CuPy v4 起已被弃用），需要从cupyx中调用，因此:
 
 a. 在 common/np.py（原书用于控制是否开启GPU加速）中添加：
 ```python
